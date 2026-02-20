@@ -22,8 +22,8 @@
     <LogicalFolder Name="Queries" Type="0" Sorted="true">
       <Items>
         <FileNode Name="SQLQuery1-INSERT DIRECTIONS.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-13IEN5T\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-13IEN5T\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>SQLQuery1-INSERT DIRECTIONS.sql</FullPath>
         </FileNode>
@@ -50,6 +50,12 @@
           <AssociatedConnSrvName>DESKTOP-13IEN5T\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>SQLQuery3-SELECT Teachers.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQLQuery4-AggregateStudentsAndGroups.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-13IEN5T\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-13IEN5T\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery4-AggregateStudentsAndGroups.sql</FullPath>
         </FileNode>
       </Items>
     </LogicalFolder>
