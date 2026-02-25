@@ -1,13 +1,19 @@
 USE PV_521_Import;
-SET DATEFIRST 1;   --Для правильной интерпретации дней недели (Пн-1, Вт-2, ..., Вс-7)
-
--- Объявляем переменные:
-DECLARE @group				 AS INT	      =  (SELECT group_id	       FROM Groups	    WHERE group_name=N'PV_521');
-DECLARE @discipline			 AS SMALLINT  =  (SELECT discipline_id     FROM Disciplines WHERE discipline_name LIKE N'%MS SQL%');
-DECLARE @number_of_lessons	 AS TINYINT	  =  (SELECT number_of_lessons FROM Disciplines WHERE discipline_id = @discipline);
-DECLARE @teacher			 AS INT	      =  (SELECT teacher_id        FROM Teachers    WHERE first_name = N'Олег');
-DECLARE @start_date			 AS DATE      =  N'2025-12-24';
-DECLARE @start_time			 AS TIME      =  (SELECT start_time        FROM Groups      WHERE group_id =@group);
+GO -- кнопка применить 
+CREATE PROCEDURE sp_InsertScheduleStacionar
+	@group_name			AS	NCHAR(10),
+	@discipline_name	AS	NVARCHAR(150),
+	@teacher_first_name AS  NVARCHAR(50),
+	@start_date			AS  DATE
+AS
+BEGIN
+	DECLARE @group			    AS	INT	     = (SELECT group_id          FROM Groups	   WHERE group_name LIKE @group_name);
+	DECLARE @teacher		    AS	SMALLINT = (SELECT teacher_id        FROM Teachers	   WHERE first_name LIKE @teacher_first_name); --@ это саммые обычные переменные
+	DECLARE @discipline			AS	INT      = (SELECT discipline_id     FROM Disciplines  WHERE discipline_name LIKE @discipline_name);
+	DECLARE @number_of_lessons  AS  TINYINT  = (SELECT number_of_lessons FROM Disciplines  WHERE discipline_name LIKE @discipline_name); -- кол-во занятий
+	--DECLARE @lesson_number		AS  TINYINT  = 0; -- номер занятий 
+	--DECLARE @date			    AS  DATE     = @start_date;
+	DECLARE @start_time		    AS  TIME	 = (SELECT start_time FROM Groups WHERE group_id  LIKE @group);
 
 
 PRINT (@group);
@@ -42,6 +48,8 @@ BEGIN
 
 END
 
-PRINT(@time);
+--PRINT(@time);
 
---PRINT - выводит на экран то, что мы хотим.
+
+
+END
