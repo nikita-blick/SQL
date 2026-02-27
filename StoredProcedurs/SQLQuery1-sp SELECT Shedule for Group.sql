@@ -7,16 +7,16 @@ AS
 BEGIN
 	DECLARE @group_id AS INT =	(SELECT group_id FROM Groups WHERE group_name LIKE @group);
 	SELECT
-			[Группа]	=	group_name,
+			[Группа]	  =	group_name,
 			[Дисциплина]  =	discipline_name,
-			[Дата]	=	[date],
-			[Время]  =	[time],
-			[День]  =	DATENAME(WEEKDAY,[date]),
-			[Препод]  =	FORMATMESSAGE(N'%s %s %s', last_name,first_name,middle_name),
-			[Статус]  =	IIF(spent=1, N'Проведено',N'Запланировано')
+			[Дата]		  =	[date],
+			[Время]       =	[time],
+			[День]        =	DATENAME(WEEKDAY,[date]),
+			[Препод]      =	FORMATMESSAGE(N'%s %s %s', last_name,first_name,middle_name),
+			[Статус]      =	IIF(spent=1, N'Проведено',N'Запланировано')
 	FROM	Schedule,Groups,Teachers,Disciplines
-	WHERE	[group]		=	group_id
-	AND		[group]		=   @group_id
-	AND		discipline	=	discipline_id
-	AND		teacher		=	teacher_id
+	WHERE	[group]		  =	group_id
+	AND		[group]		  = @group_id
+	AND		discipline	  =	discipline_id
+	AND		teacher		  =	teacher_id
 END
