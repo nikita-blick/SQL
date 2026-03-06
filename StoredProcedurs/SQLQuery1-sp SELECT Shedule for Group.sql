@@ -2,7 +2,7 @@ USE PV_521_Import;
 SET DATEFIRST 1;
 GO
 
-CREATE PROCEDURE sp_SelectScheduleFor @group AS NCHAR(10)
+CREATE OR ALTER PROCEDURE sp_SelectScheduleFor @group AS NCHAR(10)
 AS
 BEGIN
 	DECLARE @group_id AS INT =	(SELECT group_id FROM Groups WHERE group_name LIKE @group);
@@ -19,4 +19,5 @@ BEGIN
 	AND		[group]		  = @group_id
 	AND		discipline	  =	discipline_id
 	AND		teacher		  =	teacher_id
+	ORDER BY [date]
 END
