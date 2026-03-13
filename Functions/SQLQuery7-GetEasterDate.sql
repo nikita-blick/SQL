@@ -1,0 +1,16 @@
+USE PV_521_Import;
+SET DATEFIRST 1;
+GO
+
+CREATE OR ALTER FUNCTION GetEasterDate(@year AS SMALLINT)RETURNS DATE
+AS
+BEGIN
+	DECLARE @a	AS	INT = @year%19;
+	DECLARE @b	AS	INT = @year%4;
+	DECLARE @c	AS	INT = @year%7;
+	DECLARE @d	AS	INT = (19*@a+15)%30;
+	DECLARE @e	AS	INT = (2*@b + 4*@c+6*@d+6)%7;
+	DECLARE @f	AS	INT = @d+@e;
+	RETURN	DATEFROMPARTS(@year,IIF(@f>26,5,4), IIF(@f>26,@f-26, 4+@f));
+
+END

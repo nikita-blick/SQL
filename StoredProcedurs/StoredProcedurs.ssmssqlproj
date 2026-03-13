@@ -45,6 +45,24 @@
           <AssociatedConnUserName />
           <FullPath>SQLQuery1-sp SELECT Shedule for Group.sql</FullPath>
         </FileNode>
+        <FileNode Name="SQLQuery1-sp_InsertAllHolidaysFor.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-13IEN5T\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-13IEN5T\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery1-sp_InsertAllHolidaysFor.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQLQuery2-sp_INSERT Schedule1221.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-13IEN5T\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-13IEN5T\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery2-sp_INSERT Schedule1221.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQLQuery7-sp_InserHolidaysFor.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-13IEN5T\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-13IEN5T\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery7-sp_InserHolidaysFor.sql</FullPath>
+        </FileNode>
       </Items>
     </LogicalFolder>
     <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
