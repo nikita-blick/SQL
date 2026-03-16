@@ -25,7 +25,8 @@ CREATE OR ALTER PROCEDURE sp_InsertSchedule1221
 	@start_date			AS	DATE,
 	@constant_day		AS	TINYINT,
 	@alternate_day		AS	TINYINT,
-	@denied_day			AS	TINYINT
+	--@denied_day			AS	TINYINT
+	@first_week_present	AS	BIT
 
 	AS
 BEGIN
@@ -40,19 +41,25 @@ BEGIN
 	DECLARE @start_time			AS	TIME	=	(SELECT start_time FROM Groups WHERE group_id=@group);
 	DECLARE @date				AS	DATE	=	@start_date;
 	DECLARE	@time				AS	TIME	=	@start_time;
-WHILE @lesson_number < @number_of_lessons
+
+
+	DECLARE @previous_week_present	AS	BIT		=	IIF(@first_week_present=1,0,1);
+
+	WHILE @lesson_number < @number_of_lessons
 	BEGIN
+			--PRINT FORMATMESSAGE(N'%s %d',N'Lesson number:\t',@lesson_number);
+			--PRINT FORMATMESSAGE(N'%s %d',N'Prev week present:\t',CAST(@previous_week_present AS INT));
 			SET		@time = @start_time;
-			EXEC sp_InsertLesson @group,@discipline,@teacher,@date,@time OUTPUT, @lesson_number OUTPUT;
-			EXEC sp_InsertLesson @group,@discipline,@teacher,@date,@time OUTPUT, @lesson_number OUTPUT;
-			--IF	DATEPART(WEEKDAY, @date) =	@constant_day	SET @date = DATEADD(DAY,7,@date)
-			SET		@date =	dbo.GetNextLearningDate(@group_name, @date);
-			WHILE	DATEPART(WEEKDAY, @date) = @denied_day
+			IF DATEPART(WEEKDAY, @date) = @constant_day OR (DATEPART(WEEKDAY, @date) = @alternate_day AND @previous_week_present=0)
 			BEGIN
-				SET @date = dbo.GetNextLearningDate(@group_name, @date);
-				IF	DATEPART(WEEKDAY, @date) = @alternate_day 
-				AND EXISTS (SELECT lesson_id FROM Schedule WHERE [date]=DATEADD(DAY, -7, @date) AND discipline=@discipline)
-					SET @date = dbo.GetNextLearningDate(@group_name, @date);
+				EXEC sp_InsertLesson @group,@discipline,@teacher,@date,@time OUTPUT, @lesson_number OUTPUT;
+				EXEC sp_InsertLesson @group,@discipline,@teacher,@date,@time OUTPUT, @lesson_number OUTPUT;
+				--IF DATEPART(WEEKDAY, @date) = @alternate_day SET @previous_week_present = 1
 			END
+			
+			IF		DATEPART(WEEKDAY, @date)=@alternate_day
+				SET @previous_week_present = IIF(@previous_week_present=1,0,1);
+
+			SET		@date =	dbo.GetNextLearningDate(@group_name, @date);
 	END
 END

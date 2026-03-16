@@ -3,9 +3,9 @@ SET DATEFIRST 1;
 
 DELETE FROM Schedule WHERE [group]=521 --AND [date] >= N'2026-08-28';
 --DELETE FROM Schedule WHERE discipline=(SELECT discipline_id FROM Disciplines	WHERE discipline_name LIKE N'Сетевое%')
-EXEC sp_InsertSchedule1221 N'PV_521', N'Hardware%', N'Свищев',N'2025-01-20', 1,3,5;
-EXEC sp_InsertSchedule1221 N'PV_521', N'%Windows',  N'Свищев', N'2025-04-30', 1,3,5;
-EXEC sp_InsertSchedule1221 N'PV_521', N'Процедурное%C++', N'Ковтун', N'2025-01-20', 5,3,1;
+EXEC sp_InsertSchedule1221 N'PV_521', N'Hardware%', N'Свищев',N'2025-01-20', 1,3,1;
+EXEC sp_InsertSchedule1221 N'PV_521', N'%Windows',  N'Свищев', N'2025-04-30', 1,3,1;
+EXEC sp_InsertSchedule1221 N'PV_521', N'Процедурное%C++', N'Ковтун', N'2025-01-20', 5,3,0;
 --UPDATE Schedule SET teacher=1 WHERE discipline=1;
 
 --EXEC sp_InsertScheduleStacionar N'PV_521', N'%MS SQL Server', N'Олег', N'2025-12-24';
